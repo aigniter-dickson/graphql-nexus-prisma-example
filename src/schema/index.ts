@@ -1,24 +1,28 @@
-import { makeSchema } from '@nexus/schema'
-import { nexusPrisma } from 'nexus-plugin-prisma'
-import * as Path from 'path'
+import { makeSchema } from '@nexus/schema';
+import { nexusPrisma } from 'nexus-plugin-prisma';
+import * as Path from 'path';
 
-import * as types from './types'
+import * as types from './types';
 
 const schema = makeSchema({
-  shouldExitAfterGenerateArtifacts: process.env.NEXUS_SHOULD_EXIT_AFTER_GENERATE_ARTIFACTS === 'true',
+  shouldExitAfterGenerateArtifacts:
+    process.env.NEXUS_SHOULD_EXIT_AFTER_GENERATE_ARTIFACTS === 'true',
   typegenAutoConfig: {
     contextType: '{ prisma: PrismaClient.PrismaClient }',
-    sources: [{ source: '.prisma/client', alias: 'PrismaClient' }]
+    sources: [{ source: '.prisma/client', alias: 'PrismaClient' }],
   },
   outputs: {
-    typegen: Path.join(__dirname, '../../node_modules/@types/typegen-nexus/index.d.ts')
+    typegen: Path.join(
+      __dirname,
+      '../../node_modules/@types/typegen-nexus/index.d.ts',
+    ),
   },
   plugins: [
     nexusPrisma({
-      experimentalCRUD: true
-    })
+      experimentalCRUD: true,
+    }),
   ],
-  types
-})
+  types,
+});
 
-export default schema
+export default schema;

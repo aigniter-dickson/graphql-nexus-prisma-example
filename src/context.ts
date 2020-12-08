@@ -1,13 +1,13 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export type Context = {
-  prisma: PrismaClient
-}
+  prisma: PrismaClient;
+};
 
 export function createContext(): Context {
   return {
-    prisma
-  }
+    prisma,
+  };
 }

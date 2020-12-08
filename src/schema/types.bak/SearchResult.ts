@@ -1,14 +1,14 @@
-import { extendType, stringArg, unionType } from '@nexus/schema'
+import { extendType, stringArg, unionType } from '@nexus/schema';
 
 export const SearchResult = unionType({
   name: 'SearchResult',
   resolveType(data) {
-    return 'heading' in data ? 'Post' : 'User'
+    return 'heading' in data ? 'Post' : 'User';
   },
   definition(t) {
-    t.members('Post', 'User')
-  }
-})
+    t.members('Post', 'User');
+  },
+});
 
 export const QuerySerachResult = extendType({
   type: 'Query',
@@ -16,24 +16,28 @@ export const QuerySerachResult = extendType({
     t.list.nonNull.field('serach', {
       type: 'SearchResult',
       args: {
-        pattern: stringArg({ default: '.*' })
+        pattern: stringArg({ default: '.*' }),
       },
       resolve(_, args, ctx) {
-        const pattern = args.pattern ?? '.*'
-        const patternRegExp = new RegExp(pattern, 'i')
-        const items = [...ctx.db.data.posts, ...ctx.db.data.users]
+        const pattern = args.pattern ?? '.*';
+        const patternRegExp = new RegExp(pattern, 'i');
+        const items = [...ctx.db.data.posts, ...ctx.db.data.users];
         return items.filter((item) => {
-          let match = false
+          let match = false;
 
           if ('heading' in item) {
-            match = Boolean(item.heading.match(patternRegExp)) || Boolean(item.content.match(patternRegExp))
+            match =
+              Boolean(item.heading.match(patternRegExp)) ||
+              Boolean(item.content.match(patternRegExp));
           } else if ('username' in item) {
-            match = Boolean(item.username.match(patternRegExp)) || Boolean(item.email.match(patternRegExp))
+            match =
+              Boolean(item.username.match(patternRegExp)) ||
+              Boolean(item.email.match(patternRegExp));
           }
 
-          return match
-        })
-      }
-    })
-  }
-})
+          return match;
+        });
+      },
+    });
+  },
+});
