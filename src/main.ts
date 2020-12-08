@@ -7,6 +7,6 @@ const server = new ApolloServer({
   context: createContext,
 });
 
-server.listen({ port: 3000 }, () => {
-  console.log('GraphQL API ready at: http://localhost:3000');
+server.listen({ port: 4000 }).then((info) => {
+  console.log(`GraphQL API ready at: ${info.url}`);
 });
