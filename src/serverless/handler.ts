@@ -10,11 +10,13 @@ const server = new ApolloServer({
   schema,
   context: createContext,
   introspection: IS_DEV,
-  playground: IS_DEV,
+  // playground: IS_DEV,
+  playground: true,
 });
-export const graphqlHandler = server.createHandler();
-// export default apolloServer.createHandler({
-//   // cors: {
-//   //   origin: "*",
-//   // },
-// });
+export const handler = server.createHandler({
+  // cors: {
+  //   origin: "*",
+  // },
+});
+
+export default handler;

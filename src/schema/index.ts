@@ -3,6 +3,7 @@ import { nexusPrisma } from 'nexus-plugin-prisma';
 import * as Path from 'path';
 
 import * as types from './types';
+// import { createContext } from '../context';
 
 const schema = makeSchema({
   shouldExitAfterGenerateArtifacts:
@@ -22,6 +23,9 @@ const schema = makeSchema({
   plugins: [
     nexusPrisma({
       experimentalCRUD: true,
+      // inputs: {
+      //   prismaClient: Path.join(__dirname, '../__generated__/prisma-client'),
+      // },
       outputs: {
         typegen: Path.join(__dirname, '/__generated__/prisma-nexus.ts'),
       },

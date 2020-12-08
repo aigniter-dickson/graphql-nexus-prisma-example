@@ -1,0 +1,19 @@
+{
+  "build": {
+    "env": {
+      "NODEJS_AWS_HANDLER_NAME": "handler"
+    }
+  },
+  "builds": [
+    {
+      "src": "src/serverless/handler.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/graphql",
+      "dest": "src/serverless/handler.ts"
+    }
+  ]
+}

@@ -7,27 +7,31 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "lib": [
-      "esnext"
+      "esnext",
     ],
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "outDir": "dist",
+    "removeComments": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
   },
   "include": [
     "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/__generated__/prisma-client/index.d.ts",
+    "src/__generated__/prisma-client/**/*"
   ],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",
     ".webpack/**/*",
-    ".vscode/**/*"
+    ".vscode/**/*",
   ]
 }
