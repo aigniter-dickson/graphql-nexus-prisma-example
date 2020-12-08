@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "NODE_ENV=development ts-node-dev --no-notify --respawn --transpile-only ./src/main",
     "dev:typecheck": "tsc --noEmit --watch",
-    "build": "ts-node src/schema && tsc"
+    "build": "ts-node src/schema && tsc",
+    "prettier": "prettier --write 'src/**/*.ts'"
   },
   "keywords": ["beginner"],
   "author": "Jason Kuhrt",
