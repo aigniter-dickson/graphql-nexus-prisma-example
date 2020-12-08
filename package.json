@@ -2,30 +2,50 @@
   "name": "nexus-example-introductory-graphql-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "engines": {
+    "node": "12.x"
+  },
+  "main": "src/main.ts",
   "scripts": {
-    "dev": "NODE_ENV=development ts-node-dev --no-notify --respawn --transpile-only ./src/main",
+    "dev:main": "NODE_ENV=development ts-node-dev --no-notify --respawn --transpile-only ./src/main",
     "dev:typecheck": "tsc --noEmit --watch",
-    "build": "ts-node src/schema && tsc",
+    "nexus:reflect": "env NEXUS_SHOULD_EXIT_AFTER_GENERATE_ARTIFACTS=true ts-node --transpile-only src/schema",
+    "generate": "yarn run generate:prisma && yarn run generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "env NEXUS_SHOULD_EXIT_AFTER_GENERATE_ARTIFACTS=true ts-node --transpile-only src/schema",
+    "build": "yarn run generate && tsc",
+    "prisma:migrate:save": "prisma migrate save --experimental",
+    "prisma:migrate:up": "prisma migrate up --experimental",
     "prettier": "prettier --write 'src/**/*.ts'"
   },
-  "keywords": ["beginner"],
+  "keywords": [
+    "beginner"
+  ],
   "author": "Jason Kuhrt",
   "license": "ISC",
   "dependencies": {
     "@nexus/schema": "^0.19.0",
     "@prisma/client": "^2.12.1",
     "apollo-server": "^2.19.0",
+    "apollo-server-lambda": "^2.19.0",
     "graphql": "^15.4.0",
     "nexus-plugin-prisma": "^0.25.0",
+    "source-map-support": "^0.5.19",
     "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@prisma/cli": "^2.12.1",
+    "@types/aws-lambda": "^8.10.64",
+    "@types/node": "^14.14.10",
     "@types/uuid": "^8.3.0",
     "prettier": "^2.1.2",
+    "serverless": "^2.15.0",
+    "serverless-dotenv-plugin": "^3.1.0",
+    "serverless-offline": "^6.8.0",
+    "serverless-plugin-typescript": "^1.1.9",
+    "ts-loader": "^8.0.11",
     "ts-node": "^9.0.0",
     "ts-node-dev": "^1.0.0",
-    "typescript": "^4.0.5"
+    "typescript": "^4.1.2"
   }
 }
