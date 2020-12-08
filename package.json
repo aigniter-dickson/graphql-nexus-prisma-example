@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "NODE_ENV=development ts-node-dev --no-notify --respawn --transpile-only ./src/main",
     "dev:typecheck": "tsc --noEmit --watch",
-    "build": "ts-node src/schema && tsc"
+    "build": "ts-node src/schema && tsc",
+    "prettier": "prettier --write 'src/**/*.ts'"
   },
   "keywords": ["beginner"],
   "author": "Jason Kuhrt",
@@ -15,6 +16,7 @@
     "@nexus/schema": "^0.19.0",
     "@prisma/client": "^2.12.1",
     "apollo-server": "^2.19.0",
+    "apollo-server-lambda": "^2.19.0",
     "graphql": "^15.4.0",
     "nexus-plugin-prisma": "^0.25.0",
     "uuid": "^8.3.1"
