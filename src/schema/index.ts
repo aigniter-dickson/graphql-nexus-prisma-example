@@ -12,14 +12,19 @@ const schema = makeSchema({
     sources: [{ source: '.prisma/client', alias: 'PrismaClient' }],
   },
   outputs: {
-    typegen: Path.join(
-      __dirname,
-      '../../node_modules/@types/typegen-nexus/index.d.ts',
-    ),
+    // typegen: Path.join(
+    //   __dirname,
+    //   '../../node_modules/@types/typegen-nexus/index.d.ts',
+    // ),
+    typegen: Path.join(__dirname, '/__generated__/nexus.ts'),
+    schema: Path.join(__dirname, '/../../schema.graphql'),
   },
   plugins: [
     nexusPrisma({
       experimentalCRUD: true,
+      outputs: {
+        typegen: Path.join(__dirname, '/__generated__/prisma-nexus.ts'),
+      },
     }),
   ],
   types,
