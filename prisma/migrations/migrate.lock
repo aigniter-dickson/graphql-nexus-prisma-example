@@ -1,3 +1,4 @@
 # Prisma Migrate lockfile v1
 
 20201207092033-initial
+20201208090413-add-foreign-key
